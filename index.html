@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장유근 · Web Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-shapes" aria-hidden="true">
+    <span class="shape shape-1"></span>
+    <span class="shape shape-2"></span>
+    <span class="shape shape-3"></span>
+  </div>
+
+  <main class="card-scene">
+    <div class="card-tilt" id="cardTilt">
+    <article class="card" id="card">
+      <div class="card-front">
+        <header class="card-header">
+          <div class="avatar-ring">
+            <img
+              src="assets/avatar-casual.png"
+              alt="장유근 캐릭터 프로필"
+              class="avatar"
+              width="120"
+              height="120"
+            >
+          </div>
+          <div class="header-text">
+            <p class="label">Digital Business Card</p>
+            <h1 class="name">장유근</h1>
+            <p class="title">(주)컬렉스 &amp; (주)에렌델웍스 대표이사</p>
+          </div>
+        </header>
+
+        <p class="tagline" id="tagline">
+          기술과 비즈니스를 잇는 <em>실행형 리더</em>
+        </p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/>
+              </svg>
+            </span>
+            <div class="contact-body">
+              <a href="mailto:ykchang@collexx.io">ykchang@collexx.io</a>
+              <a href="mailto:ykchang@earendelworks.com">ykchang@earendelworks.com</a>
+            </div>
+          </li>
+          <li>
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M6.5 4h11A2.5 2.5 0 0 1 20 6.5v11A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-11A2.5 2.5 0 0 1 6.5 4z"/>
+                <path d="M8 8h8M8 12h5"/>
+              </svg>
+            </span>
+            <div class="contact-body">
+              <a href="tel:01099908810">010-9990-8810</a>
+            </div>
+          </li>
+        </ul>
+
+        <footer class="card-footer">
+          <button type="button" class="btn btn-primary" id="copyBtn">
+            <span>연락처 복사</span>
+          </button>
+          <button type="button" class="btn btn-ghost" id="flipBtn">
+            <span>명함 뒤집기</span>
+          </button>
+        </footer>
+      </div>
+
+      <div class="card-back">
+        <div class="back-building">
+          <img
+            src="assets/company-building-gangnam.png"
+            alt="강남 사옥 일러스트"
+            class="building-art"
+            width="344"
+            height="258"
+          >
+          <div class="building-overlay"></div>
+        </div>
+        <div class="back-content">
+          <p class="back-label">Gangnam Office</p>
+          <h2>강남, 우리가 일하는 곳</h2>
+          <p class="back-desc">
+            (주)컬렉스 · (주)에렌델웍스<br>
+            서울 강남의 멋진 빌딩에서<br>
+            혁신을 만들어갑니다.
+          </p>
+          <div class="company-badges">
+            <span class="badge">Collexx</span>
+            <span class="badge">Earendel Works</span>
+          </div>
+          <button type="button" class="btn btn-ghost back-flip" id="flipBackBtn">
+            <span>앞면으로</span>
+          </button>
+        </div>
+      </div>
+    </article>
+    </div>
+
+    <p class="toast" id="toast" role="status" aria-live="polite"></p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

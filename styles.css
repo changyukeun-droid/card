@@ -1,0 +1,445 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0f1419;
+  --card-bg: linear-gradient(145deg, #1a2332 0%, #121820 55%, #0d1117 100%);
+  --accent: #4f9cf9;
+  --accent-soft: rgba(79, 156, 249, 0.15);
+  --gold: #e8c872;
+  --text: #f0f4f8;
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+  --radius: 24px;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Noto Sans KR", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  padding: 24px;
+}
+
+.bg-shapes {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+}
+
+.shape-1 {
+  width: 420px;
+  height: 420px;
+  background: #2563eb;
+  top: -120px;
+  right: -80px;
+  animation: float 12s ease-in-out infinite;
+}
+
+.shape-2 {
+  width: 320px;
+  height: 320px;
+  background: #7c3aed;
+  bottom: -60px;
+  left: -60px;
+  animation: float 14s ease-in-out infinite reverse;
+}
+
+.shape-3 {
+  width: 200px;
+  height: 200px;
+  background: var(--gold);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.12;
+  animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-20px, 24px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.card-scene {
+  perspective: 1200px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-tilt {
+  width: min(400px, 92vw);
+  transition: transform 0.15s ease-out;
+  transform-style: preserve-3d;
+}
+
+.card-tilt.is-tilt-disabled {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card {
+  width: 100%;
+  height: 520px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  padding: 0;
+  overflow: hidden;
+}
+
+.back-building {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.building-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.building-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 30%,
+    rgba(13, 17, 23, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+.card-back .back-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 28px 28px;
+}
+
+.card-header {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.avatar-ring {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--accent), var(--gold));
+  box-shadow: 0 8px 24px rgba(79, 156, 249, 0.3);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  background: #1e293b;
+}
+
+.header-text {
+  min-width: 0;
+}
+
+.label {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-family: "Playfair Display", "Noto Sans KR", serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.title {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+.tagline {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  padding: 16px 18px;
+  background: var(--accent-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.6s ease 0.3s forwards;
+}
+
+.tagline em {
+  font-style: normal;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.contact-list li:nth-child(1) { animation-delay: 0.45s; }
+.contact-list li:nth-child(2) { animation-delay: 0.55s; }
+
+.icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  color: var(--accent);
+}
+
+.icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contact-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 6px;
+}
+
+.contact-body a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s;
+  word-break: break-all;
+}
+
+.contact-body a:hover {
+  color: var(--accent);
+}
+
+.card-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.65s forwards;
+}
+
+.btn {
+  flex: 1;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #3b7dd8);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(79, 156, 249, 0.35);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(79, 156, 249, 0.5);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+.back-content {
+  max-width: 280px;
+}
+
+.back-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.back-content h2 {
+  font-family: "Playfair Display", "Noto Sans KR", serif;
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+  line-height: 1.35;
+}
+
+.back-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.company-badges {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.badge {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--gold);
+}
+
+.back-flip {
+  flex: none;
+  width: 100%;
+}
+
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: rgba(30, 41, 59, 0.95);
+  color: var(--text);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 420px) {
+  .card-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-footer {
+    flex-direction: column;
+  }
+}
